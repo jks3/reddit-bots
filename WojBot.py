@@ -14,7 +14,8 @@ class MyStreamListener(tweepy.StreamListener):
         try:
             fulltweet = status.extended_tweet['full_text']
 
-            if status.extended_tweet['full_text'].find("RT @") == -1:
+            if status.extended_tweet['full_text'].find("RT @") == -1 \
+                    and status.extended_tweet['full_text'].find("@wojespn") == -1:
                 print(status.extended_tweet['full_text'])
                 reddit.subreddit("nba").submit(
                     title= "[Adrian Wojnarowski] "
@@ -26,7 +27,7 @@ class MyStreamListener(tweepy.StreamListener):
                 print("Caught retweet! The text was more than 140 chars and was: "
                       +  status.extended_tweet['full_text'])
         except:
-            if status.text.find("RT @") == -1:
+            if status.text.find("RT @") == -1 and status.text.find("@wojespn") == -1:
                 print(status.text)
                 reddit.subreddit("nba").submit(
                     title="[Adrian Wojnarowski] "
