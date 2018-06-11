@@ -13,24 +13,28 @@ class MyStreamListener(tweepy.StreamListener):
         self.stream = Stream(auth=api1.auth, listener=self, tweet_mode='extended')
 
         try:
-            print(status.extended_tweet['full_text'])
-
-            if not status.retweeted:
+            if status.extended_tweet['full_text'].find("RT @") == -1:
+                print(status.extended_tweet['full_text'])
                 reddit.subreddit("nba").submit(
                     title= "[Shams Charania] "
                            + status.extended_tweet['full_text']
                         [0:status.extended_tweet['full_text'].find(".") + 1],
                     url="https://twitter.com/ShamsCharania/status/"
                                                        + str(status.id))
+            else:
+                print("Caught retweet! The text was more than 140 chars and was: "
+                      +  status.extended_tweet['full_text'])
         except:
-            print(status.text)
-
-            if not status.retweeted:
+            if status.text.find("RT @") == -1:
+                print(status.text)
                 reddit.subreddit("nba").submit(
                     title="[Shams Charania] "
                           + status.text[0:status.text.find(".") + 1]
                     , url="https://twitter.com/ShamsCharania/status/"
                                                       + str(status.id))
+            else:
+                print("Caught retweet! The text was less than 140 chars and was: "
+                      +  status.text)
 
 
 
