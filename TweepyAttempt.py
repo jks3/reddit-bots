@@ -53,5 +53,5 @@ print(type(api.user_timeline(id = "wojespn", tweet_mode = "extended")[2]))
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener, tweet_mode = "extended")
 
-myStream.filter(follow=["50323173"])
+myStream.filter(follow=["615513817"])
 

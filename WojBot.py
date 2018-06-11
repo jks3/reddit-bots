@@ -18,7 +18,7 @@ class MyStreamListener(tweepy.StreamListener):
                 title= "[Adrian Wojnarowski] "
                        + status.extended_tweet['full_text']
                        [0:status.extended_tweet['full_text'].find(".") + 1],
-                url="https://twitter.com/JordanSimkovic/status/"
+                url="https://twitter.com/wojespn/status/"
                                                    + str(status.id))
         except:
             print(status.text)
@@ -26,7 +26,7 @@ class MyStreamListener(tweepy.StreamListener):
             reddit.subreddit("nba").submit(
                 title="[Adrian Wojnarowski] "
                       + status.text[0:status.text.find(".") + 1]
-                , url="https://twitter.com/JordanSimkovic/status/"
+                , url="https://twitter.com/wojespn/status/"
                                                   + str(status.id))
 
 
