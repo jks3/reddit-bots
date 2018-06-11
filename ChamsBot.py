@@ -15,20 +15,22 @@ class MyStreamListener(tweepy.StreamListener):
         try:
             print(status.extended_tweet['full_text'])
 
-            reddit.subreddit("nba").submit(
-                title= "[Shams Charania] "
-                       + status.extended_tweet['full_text']
-                       [0:status.extended_tweet['full_text'].find(".") + 1],
-                url="https://twitter.com/ShamsCharania/status/"
-                                                   + str(status.id))
+            if not status.retweeted:
+                reddit.subreddit("nba").submit(
+                    title= "[Shams Charania] "
+                           + status.extended_tweet['full_text']
+                        [0:status.extended_tweet['full_text'].find(".") + 1],
+                    url="https://twitter.com/ShamsCharania/status/"
+                                                       + str(status.id))
         except:
             print(status.text)
 
-            reddit.subreddit("nba").submit(
-                title="[Shams Charania] "
-                      + status.text[0:status.text.find(".") + 1]
-                , url="https://twitter.com/ShamsCharania/status/"
-                                                  + str(status.id))
+            if not status.retweeted:
+                reddit.subreddit("nba").submit(
+                    title="[Shams Charania] "
+                          + status.text[0:status.text.find(".") + 1]
+                    , url="https://twitter.com/ShamsCharania/status/"
+                                                      + str(status.id))
 
 
 
