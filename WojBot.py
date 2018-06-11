@@ -12,6 +12,8 @@ class MyStreamListener(tweepy.StreamListener):
         self.stream = Stream(auth=api1.auth, listener=self, tweet_mode='extended')
 
         try:
+            fulltweet = status.extended_tweet['full_text']
+
             if status.extended_tweet['full_text'].find("RT @") == -1:
                 print(status.extended_tweet['full_text'])
                 reddit.subreddit("nba").submit(
