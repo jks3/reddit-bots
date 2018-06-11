@@ -13,25 +13,39 @@ class MyStreamListener(tweepy.StreamListener):
         self.stream = Stream(auth=api1.auth, listener=self, tweet_mode='extended')
 
         try:
-            print(status.extended_tweet['full_text'])
+            fulltweet = status.extended_tweet['full_text']
 
-            reddit.subreddit("nba").submit(
-                title= "[Adrian Wojnarowski] "
-                       + status.extended_tweet['full_text']
-                       [0:status.extended_tweet['full_text'].find(".") + 1],
-                url="https://twitter.com/JordanSimkovic/status/"
-                                                   + str(status.id))
+            if status.extended_tweet['full_text'].find("RT @") == -1 \
+                    and status.extended_tweet['full_text'].find("@NYPost_Mets") == -1:
+                print(status.extended_tweet['full_text'])
+                reddit.subreddit("DebateWithStrawmen").submit(
+                    title= "[Puma] "
+                           + status.extended_tweet['full_text']
+                        [0:status.extended_tweet['full_text'].find(".") + 1],
+                    url="https://twitter.com/JordanSimkovic/status/"
+                                                       + str(status.id))
+            else:
+                print("Caught retweet! The text was more than 140 chars and was: "
+                      +  status.extended_tweet['full_text'])
         except:
-            print(status.text)
+            if status.text.find("RT @") == -1 and status.text.find("@NYPost_Mets") == -1:
+                print(status.text)
+                reddit.subreddit("DebateWithStrawmen").submit(
+                    title="[Puma] "
+                          + status.text[0:status.text.find(".") + 1]
+                    , url="https://twitter.com/JordanSimkovic/status/"
+                                                      + str(status.id))
+            else:
+                print("Caught retweet! The text was less than 140 chars and was: "
+                      +  status.text)
 
-            reddit.subreddit("nba").submit(
-                title="[Adrian Wojnarowski] "
-                      + status.text[0:status.text.find(".") + 1]
-                , url="https://twitter.com/JordanSimkovic/status/"
-                                                  + str(status.id))
 
 
-
+def statusFollower():
+    try:
+        myStream.filter(follow=["615513817"])
+    except:
+        statusFollower()
 
 reddit = praw.Reddit(client_id='jvTpt-_A6Y_oTA',
                      client_secret='lMkkD-4s2fPkxE9Kp--VrCEHoMI',
@@ -39,10 +53,10 @@ reddit = praw.Reddit(client_id='jvTpt-_A6Y_oTA',
                      username='mkgandkembafan',
                      password='Jkys1171998!?')
 
-auth = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
-                           "PeuWzllsoiXnQBxAgWLInNUM8BBY2I0eXQZ2yB2pIp59Fjt4Ul")
-auth.set_access_token("615513817-1IxaVyxPfkxZ6jIO9CI89b4FJpSUYxUfw42iUZEH",
-                      "aL5qn9629Q3kvCkWjRlKA6bYXwyTnKxaskTLMwsZvmBlI")
+auth = tweepy.OAuthHandler("EzUsddbekYsLz4benZe5Y8Qjh",
+                           "JGDpkkQMQifdcrm5Ra4Cu0LoLlajDOHKRs2VYb7jq29TNNbSpi")
+auth.set_access_token("615513817-SmZwmbz1YzZcRtI4Czo1j1sU2Cnx94xQcqKuZ8oc",
+                      "GFJWJQ9XO9ssnRti1NQiVa6kWkuRdsYWHSi0CJ4So4S47")
 
 api = tweepy.API(auth)
 
@@ -53,5 +67,6 @@ print(type(api.user_timeline(id = "wojespn", tweet_mode = "extended")[2]))
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener, tweet_mode = "extended")
 
-myStream.filter(follow=["615513817"])
+statusFollower()
+
 

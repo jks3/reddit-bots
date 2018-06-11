@@ -38,7 +38,11 @@ class MyStreamListener(tweepy.StreamListener):
                 print("Caught retweet! The text was less than 140 chars and was: "
                       +  status.text)
 
-
+def statusFollower():
+    try:
+        myStream.filter(follow=["50323173"])
+    except:
+        statusFollower()
 
 reddit = praw.Reddit(client_id='jvTpt-_A6Y_oTA',
                      client_secret='lMkkD-4s2fPkxE9Kp--VrCEHoMI',
@@ -60,5 +64,4 @@ print(type(api.user_timeline(id = "wojespn", tweet_mode = "extended")[2]))
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener, tweet_mode = "extended")
 
-myStream.filter(follow=["50323173"])
-
+statusFollower()

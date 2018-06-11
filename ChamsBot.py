@@ -40,7 +40,11 @@ class MyStreamListener(tweepy.StreamListener):
                       +  status.text)
 
 
-
+def statusFollower():
+    try:
+        myStream.filter(follow=["178580925"])
+    except:
+        statusFollower()
 
 reddit = praw.Reddit(client_id='jvTpt-_A6Y_oTA',
                      client_secret='lMkkD-4s2fPkxE9Kp--VrCEHoMI',
@@ -62,5 +66,4 @@ print(type(api.user_timeline(id = "wojespn", tweet_mode = "extended")[2]))
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener, tweet_mode = "extended")
 
-myStream.filter(follow=["178580925"])
-
+statusFollower()
