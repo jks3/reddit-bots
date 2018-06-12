@@ -59,6 +59,7 @@ class MyStreamListener(tweepy.StreamListener):
 
 def statusFollower():
     try:
+        myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener, tweet_mode="extended")
         myStream.filter(follow=["16252118"])
     except:
         statusFollower()
