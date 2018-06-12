@@ -6,10 +6,21 @@ from tweepy import Stream
 def getEndIndex(tweet):
     endIndex = tweet.find(".")
 
-    if (tweet[endIndex - 1].isdigit() and tweet[endIndex + 1].isdigit()):
+    if endIndex == len(tweet) - 1:
+        return endIndex
+    elif (tweet[endIndex - 1].isdigit() and tweet[endIndex + 1].isdigit()):
+        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
+    elif not(tweet[endIndex - 2: endIndex].lower().find("jr") == -1):
         return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
     else:
         return endIndex
+
+auth = tweepy.OAuthHandler("EzUsddbekYsLz4benZe5Y8Qjh",
+                           "JGDpkkQMQifdcrm5Ra4Cu0LoLlajDOHKRs2VYb7jq29TNNbSpi")
+auth.set_access_token("615513817-SmZwmbz1YzZcRtI4Czo1j1sU2Cnx94xQcqKuZ8oc",
+                      "GFJWJQ9XO9ssnRti1NQiVa6kWkuRdsYWHSi0CJ4So4S47")
+
+api = tweepy.API(auth)
 
 class MyStreamListener(tweepy.StreamListener):
     auth1 = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
@@ -51,10 +62,11 @@ class MyStreamListener(tweepy.StreamListener):
                 print("Caught retweet! The text was less than 140 chars and was: "
                       +  status.text)
 
-
+myStreamListener = MyStreamListener()
 
 def statusFollower():
     try:
+        myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener, tweet_mode="extended")
         myStream.filter(follow=["615513817"])
     except:
         statusFollower()
@@ -65,20 +77,6 @@ reddit = praw.Reddit(client_id='jvTpt-_A6Y_oTA',
                      username='mkgandkembafan',
                      password='Jkys1171998!?')
 
-auth = tweepy.OAuthHandler("EzUsddbekYsLz4benZe5Y8Qjh",
-                           "JGDpkkQMQifdcrm5Ra4Cu0LoLlajDOHKRs2VYb7jq29TNNbSpi")
-auth.set_access_token("615513817-SmZwmbz1YzZcRtI4Czo1j1sU2Cnx94xQcqKuZ8oc",
-                      "GFJWJQ9XO9ssnRti1NQiVa6kWkuRdsYWHSi0CJ4So4S47")
 
-api = tweepy.API(auth)
-
-print(api.user_timeline(id = "wojespn", tweet_mode = "extended")[2].full_text)
-
-print(type(api.user_timeline(id = "wojespn", tweet_mode = "extended")[2]))
-
-myStreamListener = MyStreamListener()
-myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener, tweet_mode = "extended")
 
 statusFollower()
-
-

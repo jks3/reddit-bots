@@ -5,10 +5,15 @@ from tweepy import Stream
 def getEndIndex(tweet):
     endIndex = tweet.find(".")
 
-    if (tweet[endIndex - 1].isdigit() and tweet[endIndex + 1].isdigit()):
+    if endIndex == len(tweet) - 1:
+        return endIndex
+    elif (tweet[endIndex - 1].isdigit() and tweet[endIndex + 1].isdigit()):
+        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
+    elif not(tweet[endIndex - 2: endIndex].lower().find("jr") == -1):
         return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
     else:
         return endIndex
+
 
 class MyStreamListener(tweepy.StreamListener):
     auth1 = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
