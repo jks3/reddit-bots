@@ -2,6 +2,15 @@ import praw
 import tweepy
 import json
 from tweepy import Stream
+
+def getEndIndex(tweet):
+    endIndex = tweet.find(".")
+
+    if (tweet[endIndex - 1].isdigit() and tweet[endIndex + 1].isdigit()):
+        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
+    else:
+        return endIndex
+
 class MyStreamListener(tweepy.StreamListener):
     auth1 = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
                                "PeuWzllsoiXnQBxAgWLInNUM8BBY2I0eXQZ2yB2pIp59Fjt4Ul")
@@ -15,23 +24,27 @@ class MyStreamListener(tweepy.StreamListener):
         try:
             fulltweet = status.extended_tweet['full_text']
 
+            endIndex = getEndIndex(fulltweet)
+
             if status.extended_tweet['full_text'].find("@") == -1:
                 print(status.extended_tweet['full_text'])
                 reddit.subreddit("NewYorkMets").submit(
                     title= "[Puma] "
                            + status.extended_tweet['full_text']
-                        [0:status.extended_tweet['full_text'].find(".") + 1],
+                        [0:endIndex + 1],
                     url="https://twitter.com/NYPost_Mets/status/"
                                                        + str(status.id))
             else:
                 print("Caught retweet! The text was more than 140 chars and was: "
                       +  status.extended_tweet['full_text'])
         except:
+            endIndex = getEndIndex(status.text)
+
             if status.text.find("@") == -1:
                 print(status.text)
                 reddit.subreddit("NewYorkMets").submit(
                     title="[Puma] "
-                          + status.text[0:status.text.find(".") + 1]
+                          + status.text[0:endIndex + 1]
                     , url="https://twitter.com/NYPost_Mets/status/"
                                                       + str(status.id))
             else:
