@@ -129,7 +129,7 @@ reddit = praw.Reddit(client_id='EzSNQk_RZGW2uQ',
                      client_secret='dt4FRLwj51O_4irHhZQ65j5Wi9c',
                      user_agent='Woj bot by u/mkgandkembafan',
                      username='mkgandkembafan',
-                     password='Jkys1171998!?')
+                     password='Jkys1171998!?!')
 
 
 
