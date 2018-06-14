@@ -22,6 +22,38 @@ auth.set_access_token("615513817-SmZwmbz1YzZcRtI4Czo1j1sU2Cnx94xQcqKuZ8oc",
 
 api = tweepy.API(auth)
 
+nameToSubreddit = {"Mavericks" : "Mavericks",
+                   "Nuggets" : "denvernuggets",
+                   "Warriors" : "warriors",
+                   "Rockets" : "rockets",
+                   "Clippers" : "LAClippers",
+                   "Lakers" : "lakers",
+                   "Grizzlies" : "memphisgrizzlies",
+                   "Timberwolves" : "timberwolves",
+                   "Pelicans" : "NOLAPelicans",
+                   "Thunder" : "Thunder",
+                   "Suns" : "suns",
+                   "Trail Blazers" : "ripcity",
+                   "Kings" : "kings",
+                   "Spurs" : "NBASpurs",
+                   "Jazz" : "UtahJazz",
+                   "Hawks" : "AtlantaHawks",
+                   "Celtics" : "bostonceltics",
+                   "Nets" : "GoNets",
+                   "Hornets" : "CharlotteHornets",
+                   "Bulls" : "chicagobulls",
+                   "Cavaliers" : "clevelandcavs",
+                   "Pistons" : "DetroitPistons",
+                   "Pacers" : "pacers",
+                   "Heat" : "heat",
+                   "Bucks" : "MkeBucks",
+                   "Knicks" : "NYKnicks",
+                   "Magic" : "OrlandoMagic",
+                   "76ers" : "sixers",
+                   "Sixers" : "sixers",
+                   "Raptors" : "torontoraptors",
+                   "Wizards" : "washingtonwizards"}
+
 class MyStreamListener(tweepy.StreamListener):
     auth1 = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
                                "PeuWzllsoiXnQBxAgWLInNUM8BBY2I0eXQZ2yB2pIp59Fjt4Ul")
