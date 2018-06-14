@@ -15,10 +15,10 @@ def getEndIndex(tweet):
     else:
         return endIndex
 
-auth = tweepy.OAuthHandler("EzUsddbekYsLz4benZe5Y8Qjh",
-                           "JGDpkkQMQifdcrm5Ra4Cu0LoLlajDOHKRs2VYb7jq29TNNbSpi")
-auth.set_access_token("615513817-SmZwmbz1YzZcRtI4Czo1j1sU2Cnx94xQcqKuZ8oc",
-                      "GFJWJQ9XO9ssnRti1NQiVa6kWkuRdsYWHSi0CJ4So4S47")
+auth = tweepy.OAuthHandler("RedMTi3TGgGXrdsy4IC20gOX4",
+                           "JV7EcbrXaW35lAOutz46gVhjWMP2o3ZhmySCUNgVY9meTmUKAU")
+auth.set_access_token("615513817-tC4DYQokwF7euREQr5RUV0MFhNFhNak2raFD02os",
+                      "SPeyjpNqThX1TFuxQcAZyJydqgQkYneJQXHfB2sIJs7ne")
 
 api = tweepy.API(auth)
 
@@ -55,10 +55,10 @@ nameToSubreddit = {"Mavericks" : "Mavericks",
                    "Wizards" : "washingtonwizards"}
 
 class MyStreamListener(tweepy.StreamListener):
-    auth1 = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
-                               "PeuWzllsoiXnQBxAgWLInNUM8BBY2I0eXQZ2yB2pIp59Fjt4Ul")
-    auth1.set_access_token("615513817-1IxaVyxPfkxZ6jIO9CI89b4FJpSUYxUfw42iUZEH",
-                          "aL5qn9629Q3kvCkWjRlKA6bYXwyTnKxaskTLMwsZvmBlI")
+    auth1 = tweepy.OAuthHandler("RedMTi3TGgGXrdsy4IC20gOX4",
+                               "JV7EcbrXaW35lAOutz46gVhjWMP2o3ZhmySCUNgVY9meTmUKAU")
+    auth1.set_access_token("615513817-tC4DYQokwF7euREQr5RUV0MFhNFhNak2raFD02os",
+                          "SPeyjpNqThX1TFuxQcAZyJydqgQkYneJQXHfB2sIJs7ne")
 
     #api1 = tweepy.API(auth1)
     def on_status(self, status, api1=tweepy.API(auth1)):
@@ -71,6 +71,9 @@ class MyStreamListener(tweepy.StreamListener):
 
             for key in nameToSubreddit:
                 if key.lower() in fulltweet.lower():
+
+                    print(key)
+
                     subreddit += "+" + nameToSubreddit[key]
             endIndex = getEndIndex(fulltweet)
             if status.extended_tweet['full_text'].find("RT @") == -1 \
@@ -88,7 +91,7 @@ class MyStreamListener(tweepy.StreamListener):
         except:
             subreddit = "DebateWithStrawmen"
             for key in nameToSubreddit:
-                if key.lower() in fulltweet.lower():
+                if key.lower() in status.text.lower():
                     subreddit += "+" + nameToSubreddit[key]
 
             endIndex = getEndIndex(status.text)
@@ -113,8 +116,8 @@ def statusFollower():
     except:
         statusFollower()
 
-reddit = praw.Reddit(client_id='jvTpt-_A6Y_oTA',
-                     client_secret='lMkkD-4s2fPkxE9Kp--VrCEHoMI',
+reddit = praw.Reddit(client_id='EzSNQk_RZGW2uQ',
+                     client_secret='dt4FRLwj51O_4irHhZQ65j5Wi9c',
                      user_agent='Woj bot by u/mkgandkembafan',
                      username='mkgandkembafan',
                      password='Jkys1171998!?')
