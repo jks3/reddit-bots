@@ -2,6 +2,39 @@ import praw
 import tweepy
 from tweepy import Stream
 
+
+nameToSubreddit = {"Mavericks" : "Mavericks",
+                   "Nuggets" : "denvernuggets",
+                   "Warriors" : "warriors",
+                   "Rockets" : "rockets",
+                   "Clippers" : "LAClippers",
+                   "Lakers" : "lakers",
+                   "Grizzlies" : "memphisgrizzlies",
+                   "Timberwolves" : "timberwolves",
+                   "Pelicans" : "NOLAPelicans",
+                   "Thunder" : "Thunder",
+                   "Suns" : "suns",
+                   "Trail Blazers" : "ripcity",
+                   "Kings" : "kings",
+                   "Spurs" : "NBASpurs",
+                   "Jazz" : "UtahJazz",
+                   "Hawks" : "AtlantaHawks",
+                   "Celtics" : "bostonceltics",
+                   "Nets" : "GoNets",
+                   "Hornets" : "CharlotteHornets",
+                   "Bulls" : "chicagobulls",
+                   "Cavaliers" : "clevelandcavs",
+                   "Pistons" : "DetroitPistons",
+                   "Pacers" : "pacers",
+                   "Heat" : "heat",
+                   "Bucks" : "MkeBucks",
+                   "Knicks" : "NYKnicks",
+                   "Magic" : "OrlandoMagic",
+                   "76ers" : "sixers",
+                   "Sixers" : "sixers",
+                   "Raptors" : "torontoraptors",
+                   "Wizards" : "washingtonwizards"}
+
 def getEndIndex(tweet):
     endIndex = tweet.find(".")
 
@@ -28,11 +61,18 @@ class MyStreamListener(tweepy.StreamListener):
         try:
             fulltweet = status.extended_tweet['full_text']
 
+            subreddit = ["nba"]
+
             endIndex = getEndIndex(fulltweet)
+
+            for key in nameToSubreddit:
+                if key.lower() in fulltweet.lower():
+                    subreddit.append(nameToSubreddit[key])
 
             if status.extended_tweet['full_text'].find("@") == -1:
                 print(status.extended_tweet['full_text'])
-                reddit.subreddit("nba").submit(
+                for sub in subreddit:
+                    reddit.subreddit(sub).submit(
                     title= "[Adrian Wojnarowski] "
                            + status.extended_tweet['full_text']
                         [0:endIndex + 1],
@@ -45,9 +85,17 @@ class MyStreamListener(tweepy.StreamListener):
 
             endIndex = getEndIndex(status.text)
 
+            subreddit = ["DebateWithStrawmen"]
+
+            for key in nameToSubreddit:
+                if key.lower() in status.text.lower():
+                    print(key)
+                    subreddit.append(nameToSubreddit[key])
+
             if status.text.find("@") == -1:
                 print(status.text)
-                reddit.subreddit("nba").submit(
+                for sub in subreddit:
+                    reddit.subreddit(sub).submit(
                     title="[Adrian Wojnarowski] "
                           + status.text[0:endIndex + 1]
                     , url="https://twitter.com/wojespn/status/"
