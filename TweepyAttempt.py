@@ -92,6 +92,7 @@ class MyStreamListener(tweepy.StreamListener):
             subreddit = "DebateWithStrawmen"
             for key in nameToSubreddit:
                 if key.lower() in status.text.lower():
+                    print(key)
                     subreddit += "+" + nameToSubreddit[key]
 
             endIndex = getEndIndex(status.text)
