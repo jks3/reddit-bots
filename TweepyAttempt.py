@@ -64,14 +64,19 @@ class MyStreamListener(tweepy.StreamListener):
     def on_status(self, status, api1=tweepy.API(auth1)):
         self.stream = Stream(auth=api1.auth, listener=self, tweet_mode='extended')
 
+        subreddit = "DebateWithStrawmen"
+
         try:
             fulltweet = status.extended_tweet['full_text']
 
+            for key in nameToSubreddit:
+                if key.lower() in fulltweet.lower():
+                    subreddit += "+" + nameToSubreddit[key]
             endIndex = getEndIndex(fulltweet)
             if status.extended_tweet['full_text'].find("RT @") == -1 \
                     and status.extended_tweet['full_text'].find("@NYPost_Mets") == -1:
                 print(status.extended_tweet['full_text'])
-                reddit.subreddit("DebateWithStrawmen").submit(
+                reddit.subreddit(subreddit).submit(
                     title= "[Puma] "
                            + status.extended_tweet['full_text']
                         [0:endIndex + 1],
@@ -81,11 +86,16 @@ class MyStreamListener(tweepy.StreamListener):
                 print("Caught retweet! The text was more than 140 chars and was: "
                       +  status.extended_tweet['full_text'])
         except:
+            subreddit = "DebateWithStrawmen"
+            for key in nameToSubreddit:
+                if key.lower() in fulltweet.lower():
+                    subreddit += "+" + nameToSubreddit[key]
+
             endIndex = getEndIndex(status.text)
 
             if status.text.find("RT @") == -1 and status.text.find("@NYPost_Mets") == -1:
                 print(status.text)
-                reddit.subreddit("DebateWithStrawmen").submit(
+                reddit.subreddit(subreddit).submit(
                     title="[Puma] "
                           + status.text[0:endIndex + 1]
                     , url="https://twitter.com/JordanSimkovic/status/"
