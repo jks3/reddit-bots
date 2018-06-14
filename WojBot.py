@@ -85,7 +85,7 @@ class MyStreamListener(tweepy.StreamListener):
 
             endIndex = getEndIndex(status.text)
 
-            subreddit = ["DebateWithStrawmen"]
+            subreddit = ["nba"]
 
             for key in nameToSubreddit:
                 if key.lower() in status.text.lower():
