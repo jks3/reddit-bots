@@ -1,3 +1,5 @@
+import traceback
+
 import praw
 import tweepy
 import json
@@ -92,6 +94,7 @@ class MyStreamListener(tweepy.StreamListener):
                 print("Caught retweet! The text was more than 140 chars and was: "
                       +  status.extended_tweet['full_text'])
         except:
+            traceback.print_exc()
             subreddit = ["DebateWithStrawmen"]
             for key in nameToSubreddit:
                 if key.lower() in status.text.lower():
