@@ -46,8 +46,6 @@ class MyStreamListener(tweepy.StreamListener):
                       +  status.extended_tweet['full_text'])
         except:
 
-            traceback.print_exc()
-
             endIndex = getEndIndex(status.text)
 
             if status.text.find("@") == -1:

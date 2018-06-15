@@ -74,17 +74,21 @@ class MyStreamListener(tweepy.StreamListener):
             if status.extended_tweet['full_text'].find("@") == -1:
                 print(status.extended_tweet['full_text'])
                 for sub in subreddit:
-                    reddit.subreddit(sub).submit(
+                    try:
+                        reddit.subreddit(sub).submit(
                     title= "[Adrian Wojnarowski] "
                            + status.extended_tweet['full_text']
                         [0:endIndex + 1],
                     url="https://twitter.com/wojespn/status/"
                                                        + str(status.id))
+                    except:
+                        print(sub)
+                        traceback.print_exc()
+                        continue
             else:
                 print("Caught retweet! The text was more than 140 chars and was: "
                       +  status.extended_tweet['full_text'])
         except:
-            traceback.print_exc()
 
             endIndex = getEndIndex(status.text)
 
@@ -98,11 +102,16 @@ class MyStreamListener(tweepy.StreamListener):
             if status.text.find("@") == -1:
                 print(status.text)
                 for sub in subreddit:
-                    reddit.subreddit(sub).submit(
+                    try:
+                        reddit.subreddit(sub).submit(
                     title="[Adrian Wojnarowski] "
                           + status.text[0:endIndex + 1]
                     , url="https://twitter.com/wojespn/status/"
                                                       + str(status.id))
+                    except:
+                        print(sub)
+                        traceback.print_exc()
+                        continue
             else:
                 print("Caught retweet! The text was less than 140 chars and was: "
                       +  status.text)

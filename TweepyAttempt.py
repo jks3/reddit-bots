@@ -2,6 +2,7 @@ import traceback
 
 import praw
 import tweepy
+import time
 import json
 from tweepy import Stream
 
@@ -84,12 +85,16 @@ class MyStreamListener(tweepy.StreamListener):
                 print(subreddit)
 
                 for sub in subreddit:
-                    reddit.subreddit(sub).submit(
+                    try:
+                        time.sleep(5)
+                        reddit.subreddit(sub).submit(
                     title= "[Puma] "
                            + status.extended_tweet['full_text']
                         [0:endIndex + 1],
                     url="https://twitter.com/JordanSimkovic/status/"
                                                        + str(status.id))
+                    except:
+                        continue
             else:
                 print("Caught retweet! The text was more than 140 chars and was: "
                       +  status.extended_tweet['full_text'])
@@ -110,11 +115,16 @@ class MyStreamListener(tweepy.StreamListener):
                 for sub in subreddit:
                     print(sub)
 
-                    reddit.subreddit(sub).submit(
+                    try:
+                        time.sleep(5)
+                        reddit.subreddit(sub).submit(
                     title="[Puma] "
                           + status.text[0:endIndex + 1]
                     , url="https://twitter.com/JordanSimkovic/status/"
                                                       + str(status.id))
+                    except:
+                        traceback.print_exc()
+                        continue
             else:
                 print("Caught retweet! The text was less than 140 chars and was: "
                       +  status.text)

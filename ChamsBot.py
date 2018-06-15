@@ -76,12 +76,17 @@ class MyStreamListener(tweepy.StreamListener):
                 print(status.extended_tweet['full_text'])
 
                 for sub in subreddit:
-                    reddit.subreddit("nba").submit(
+                    try:
+                        reddit.subreddit("nba").submit(
                     title= "[Shams Charania] "
                            + status.extended_tweet['full_text']
                         [0:endIndex + 1],
                     url="https://twitter.com/ShamsCharania/status/"
                                                        + str(status.id))
+                    except:
+                        print(sub)
+                        traceback.print_exc()
+                        continue
             else:
                 print("Caught retweet! The text was more than 140 chars and was: "
                       +  status.extended_tweet['full_text'])
@@ -100,11 +105,16 @@ class MyStreamListener(tweepy.StreamListener):
                 print(status.text)
 
                 for sub in subreddit:
-                    reddit.subreddit(sub).submit(
+                    try:
+                        reddit.subreddit(sub).submit(
                     title="[Shams Charania] "
                           + status.text[0:endIndex + 1]
                     , url="https://twitter.com/ShamsCharania/status/"
                                                       + str(status.id))
+                    except:
+                        print(sub)
+                        traceback.print_exc()
+                        continue
             else:
                 print("Caught retweet! The text was less than 140 chars and was: "
                       +  status.text)
