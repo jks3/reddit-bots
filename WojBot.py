@@ -96,7 +96,6 @@ class MyStreamListener(tweepy.StreamListener):
 
             for key in nameToSubreddit:
                 if key.lower() in status.text.lower():
-                    print(key)
                     subreddit.append(nameToSubreddit[key])
 
             if status.text.find("@") == -1:
@@ -117,11 +116,12 @@ class MyStreamListener(tweepy.StreamListener):
                       +  status.text)
 
 def statusFollower():
-    try:
-        myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener, tweet_mode="extended")
-        myStream.filter(follow=["50323173"])
-    except:
-        statusFollower()
+    while (True):
+        try:
+            myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener, tweet_mode="extended")
+            myStream.filter(follow=["50323173"])
+        except:
+            continue
 
 reddit = praw.Reddit(client_id='jvTpt-_A6Y_oTA',
                      client_secret='lMkkD-4s2fPkxE9Kp--VrCEHoMI',

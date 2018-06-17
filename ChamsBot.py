@@ -120,12 +120,12 @@ class MyStreamListener(tweepy.StreamListener):
 
 
 def statusFollower():
-    try:
-        myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener, tweet_mode="extended")
-        myStream.filter(follow=["178580925"])
-    except:
-        statusFollower()
-
+    while True:
+        try:
+            myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener, tweet_mode="extended")
+            myStream.filter(follow=["178580925"])
+        except:
+            continue
 reddit = praw.Reddit(client_id='jvTpt-_A6Y_oTA',
                      client_secret='lMkkD-4s2fPkxE9Kp--VrCEHoMI',
                      user_agent='Woj bot by u/mkgandkembafan',
