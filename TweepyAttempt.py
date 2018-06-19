@@ -11,9 +11,13 @@ def getEndIndex(tweet):
 
     if endIndex == len(tweet) - 1:
         return endIndex
+    elif endIndex == -1:
+        return len(tweet) - 1
     elif (tweet[endIndex - 1].isdigit() and tweet[endIndex + 1].isdigit()):
         return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
     elif not(tweet[endIndex - 2: endIndex].lower().find("jr") == -1):
+        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
+    elif (tweet[0:endIndex + 1].count("\"")%2 == 1):
         return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
     else:
         return endIndex
