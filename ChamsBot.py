@@ -100,7 +100,8 @@ class MyStreamListener(tweepy.StreamListener):
 
             endIndex = getEndIndex(fulltweet)
 
-            if status.extended_tweet['full_text'].find("@ShamsCharania") == -1:
+            if status.extended_tweet['full_text'].find("@ShamsCharania") == -1 and \
+                    status.extended_tweet['full_text'].find("RT @") == -1:
                 print(status.extended_tweet['full_text'])
 
                 for sub in subreddit:
@@ -128,7 +129,7 @@ class MyStreamListener(tweepy.StreamListener):
 
             endIndex = getEndIndex(status.text)
 
-            if status.text.find("@ShamsCharania") == -1:
+            if status.text.find("@ShamsCharania") == -1 and status.text.find("RT @"):
                 print(status.text)
 
                 for sub in subreddit:
