@@ -96,7 +96,7 @@ class MyStreamListener(tweepy.StreamListener):
         try:
             fulltweet = status.extended_tweet['full_text']
 
-            subreddit = ["nba"]
+            subreddit = []
 
             for key in nameToSubreddit:
                 if key.lower() in fulltweet.lower():
@@ -126,7 +126,7 @@ class MyStreamListener(tweepy.StreamListener):
                       +  status.extended_tweet['full_text'])
         except:
 
-            subreddit = ["nba"]
+            subreddit = []
 
             for key in nameToSubreddit:
                 if key.lower() in status.text.lower():
