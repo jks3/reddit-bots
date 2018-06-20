@@ -99,7 +99,7 @@ class MyStreamListener(tweepy.StreamListener):
                 if key.lower() in fulltweet.lower():
                     subreddit.append(nameToSubreddit[key])
 
-            if status.extended_tweet['full_text'].find("@wojespn") == -1 and \
+            if status.extended_tweet['full_text'].lower().find("@wojespn") == -1 and \
                     status.extended_tweet['full_text'].find("RT @") == -1:
                 print(status.extended_tweet['full_text'])
                 for sub in subreddit:
@@ -127,7 +127,7 @@ class MyStreamListener(tweepy.StreamListener):
                 if key.lower() in status.text.lower():
                     subreddit.append(nameToSubreddit[key])
 
-            if status.text.find("@wojespn") == -1 and status.text.find("RT @"):
+            if status.text.lower().find("@wojespn") == -1 and status.text.find("RT @"):
                 print(status.text)
                 for sub in subreddit:
                     try:
