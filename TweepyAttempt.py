@@ -6,19 +6,20 @@ import time
 import json
 from tweepy import Stream
 
-def getEndIndex(tweet):
+def getEndIndex(tweet, numOfQuotes):
     endIndex = tweet.find(".")
 
+    numOfQuotes += tweet[0:endIndex + 1].count("\"")
     if endIndex == len(tweet) - 1:
         return endIndex
     elif endIndex == -1:
         return len(tweet) - 1
     elif (tweet[endIndex - 1].isdigit() and tweet[endIndex + 1].isdigit()):
-        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
+        return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
     elif not(tweet[endIndex - 2: endIndex].lower().find("jr") == -1):
-        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
-    elif (tweet[0:endIndex + 1].count("\"")%2 == 1):
-        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
+        return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
+    elif (numOfQuotes%2 == 1):
+        return endIndex + getEndIndex(tweet[endIndex + 1:], numOfQuotes) + 1
     else:
         return endIndex
 
@@ -82,7 +83,7 @@ class MyStreamListener(tweepy.StreamListener):
                     print(key)
 
                     subreddit.append(nameToSubreddit[key])
-            endIndex = getEndIndex(fulltweet)
+            endIndex = getEndIndex(fulltweet, 0)
             if status.extended_tweet['full_text'].find("RT @") == -1 \
                     and status.extended_tweet['full_text'].find("@NYPost_Mets") == -1:
                 print(status.extended_tweet['full_text'])
@@ -110,7 +111,7 @@ class MyStreamListener(tweepy.StreamListener):
                     print(key)
                     subreddit.append(nameToSubreddit[key])
 
-            endIndex = getEndIndex(status.text)
+            endIndex = getEndIndex(status.text, 0)
 
             if status.text.find("RT @") == -1 and status.text.find("@NYPost_Mets") == -1:
                 print(status.text)
@@ -146,7 +147,7 @@ reddit = praw.Reddit(client_id='EzSNQk_RZGW2uQ',
                      client_secret='dt4FRLwj51O_4irHhZQ65j5Wi9c',
                      user_agent='Woj bot by u/mkgandkembafan',
                      username='mkgandkembafan',
-                     password='Jkys1171998!?!')
+                     password='Jkys1171998!?')
 
 
 
