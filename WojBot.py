@@ -65,15 +65,20 @@ nameToSubreddit = {"Mavericks" : "Mavericks",
                    "Wizards" : "washingtonwizards",
                    "Washington" : "washingtonwizards"}
 
-def getEndIndex(tweet):
+def getEndIndex(tweet, numOfQuotes):
     endIndex = tweet.find(".")
 
+    numOfQuotes += tweet[0:endIndex + 1].count("\"")
     if endIndex == len(tweet) - 1:
         return endIndex
+    elif endIndex == -1:
+        return len(tweet) - 1
     elif (tweet[endIndex - 1].isdigit() and tweet[endIndex + 1].isdigit()):
-        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
+        return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
     elif not(tweet[endIndex - 2: endIndex].lower().find("jr") == -1):
-        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
+        return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
+    elif (numOfQuotes%2 == 1):
+        return endIndex + getEndIndex(tweet[endIndex + 1:], numOfQuotes) + 1
     else:
         return endIndex
 
@@ -93,7 +98,7 @@ class MyStreamListener(tweepy.StreamListener):
 
             subreddit = ["nba"]
 
-            endIndex = getEndIndex(fulltweet)
+            endIndex = getEndIndex(fulltweet, 0)
 
             for key in nameToSubreddit:
                 if key.lower() in fulltweet.lower():
@@ -119,7 +124,7 @@ class MyStreamListener(tweepy.StreamListener):
                       +  status.extended_tweet['full_text'])
         except:
 
-            endIndex = getEndIndex(status.text)
+            endIndex = getEndIndex(status.text, 0)
 
             subreddit = ["nba"]
 

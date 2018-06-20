@@ -65,15 +65,20 @@ nameToSubreddit = {"Mavericks" : "Mavericks",
                    "Wizards" : "washingtonwizards",
                    "Washington" : "washingtonwizards"}
 
-def getEndIndex(tweet):
+def getEndIndex(tweet, numOfQuotes):
     endIndex = tweet.find(".")
 
+    numOfQuotes += tweet[0:endIndex + 1].count("\"")
     if endIndex == len(tweet) - 1:
         return endIndex
+    elif endIndex == -1:
+        return len(tweet) - 1
     elif (tweet[endIndex - 1].isdigit() and tweet[endIndex + 1].isdigit()):
-        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
+        return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
     elif not(tweet[endIndex - 2: endIndex].lower().find("jr") == -1):
-        return endIndex + getEndIndex(tweet[endIndex + 1:]) + 1
+        return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
+    elif (numOfQuotes%2 == 1):
+        return endIndex + getEndIndex(tweet[endIndex + 1:], numOfQuotes) + 1
     else:
         return endIndex
 
@@ -98,7 +103,7 @@ class MyStreamListener(tweepy.StreamListener):
 
                     subreddit.append(nameToSubreddit[key])
 
-            endIndex = getEndIndex(fulltweet)
+            endIndex = getEndIndex(fulltweet, 0)
 
             if status.extended_tweet['full_text'].lower().find("@ShamsCharania".lower()) == -1 and \
                     status.extended_tweet['full_text'].find("RT @") == -1:
@@ -127,7 +132,7 @@ class MyStreamListener(tweepy.StreamListener):
                 if key.lower() in status.text.lower():
                     subreddit.append(nameToSubreddit[key])
 
-            endIndex = getEndIndex(status.text)
+            endIndex = getEndIndex(status.text, 0)
 
             if status.text.lower().find("@ShamsCharania".lower()) == -1 and status.text.find("RT @"):
                 print(status.text)
