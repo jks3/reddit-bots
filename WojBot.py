@@ -110,7 +110,7 @@ class MyStreamListener(tweepy.StreamListener):
                 for sub in subreddit:
                     try:
                         reddit.subreddit(sub).submit(
-                    title= "[Adrian Wojnarowski] "
+                    title= "[Wojnarowski] "
                            + status.extended_tweet['full_text']
                         [0:endIndex + 1],
                     url="https://twitter.com/wojespn/status/"
@@ -132,12 +132,14 @@ class MyStreamListener(tweepy.StreamListener):
                 if key.lower() in status.text.lower():
                     subreddit.append(nameToSubreddit[key])
 
-            if status.text.lower().find("@wojespn") == -1 and status.text.find("RT @"):
+            if status.text.lower().find("@wojespn") == -1 and status.text.find("RT @") == -1 \
+                    and status.text.lower().find("story") == -1 and status.text.lower().find("stories") == -1 \
+                    and len(status.text) >= 65:
                 print(status.text)
                 for sub in subreddit:
                     try:
                         reddit.subreddit(sub).submit(
-                    title="[Adrian Wojnarowski] "
+                    title="[Wojnarowski] "
                           + status.text[0:endIndex + 1]
                     , url="https://twitter.com/wojespn/status/"
                                                       + str(status.id))
