@@ -114,7 +114,7 @@ class MyStreamListener(tweepy.StreamListener):
 
             for sub in subreddit:
                 try:
-                    reddit.subreddit("nba").submit(
+                    reddit.subreddit(sub).submit(
                 title= "[Charania] "
                        + fulltweet
                     [0:endIndex + 1],
