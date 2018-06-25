@@ -93,63 +93,40 @@ class MyStreamListener(tweepy.StreamListener):
     def on_status(self, status, api1=tweepy.API(auth1)):
         self.stream = Stream(auth=api1.auth, listener=self, tweet_mode='extended')
 
+        fulltweet = ""
+
         try:
             fulltweet = status.extended_tweet['full_text']
-
-            subreddit = []
-
-            endIndex = getEndIndex(fulltweet, 0)
-
-            for key in nameToSubreddit:
-                if key.lower() in fulltweet.lower():
-                    subreddit.append(nameToSubreddit[key])
-
-            if status.extended_tweet['full_text'].lower().find("@wojespn") == -1 and \
-                    status.extended_tweet['full_text'].find("RT @") == -1:
-                print(status.extended_tweet['full_text'])
-                for sub in subreddit:
-                    try:
-                        reddit.subreddit(sub).submit(
-                    title= "[Wojnarowski] "
-                           + status.extended_tweet['full_text']
-                        [0:endIndex + 1],
-                    url="https://twitter.com/wojespn/status/"
-                                                       + str(status.id))
-                    except:
-                        print(sub)
-                        traceback.print_exc()
-                        continue
-            else:
-                print("Caught retweet! The text was more than 140 chars and was: "
-                      +  status.extended_tweet['full_text'])
         except:
+            fulltweet = status.text
 
-            endIndex = getEndIndex(status.text, 0)
+        subreddit = ["nba"]
 
-            subreddit = []
+        endIndex = getEndIndex(fulltweet, 0)
 
-            for key in nameToSubreddit:
-                if key.lower() in status.text.lower():
-                    subreddit.append(nameToSubreddit[key])
+        for key in nameToSubreddit:
+            if key.lower() in fulltweet.lower():
+                subreddit.append(nameToSubreddit[key])
 
-            if status.text.lower().find("@wojespn") == -1 and status.text.find("RT @") == -1 \
-                    and status.text.lower().find("story") == -1 and status.text.lower().find("stories") == -1 \
-                    and len(status.text) >= 65:
-                print(status.text)
-                for sub in subreddit:
-                    try:
-                        reddit.subreddit(sub).submit(
-                    title="[Wojnarowski] "
-                          + status.text[0:endIndex + 1]
-                    , url="https://twitter.com/wojespn/status/"
-                                                      + str(status.id))
-                    except:
-                        print(sub)
-                        traceback.print_exc()
-                        continue
-            else:
-                print("Caught retweet! The text was less than 140 chars and was: "
-                      +  status.text)
+        if fulltweet.lower().find("@wojespn") == -1 and \
+               fulltweet.find("RT @") == -1 and fulltweet.lower().find("story") == -1 \
+                and fulltweet.lower().find("stories") and len(fulltweet) >= 65:
+            print(fulltweet)
+            for sub in subreddit:
+                try:
+                    reddit.subreddit(sub).submit(
+                        title= "[Wojnarowski] "
+                       + fulltweet
+                    [0:endIndex + 1],
+                url="https://twitter.com/wojespn/status/"
+                                                   + str(status.id))
+                except:
+                    print(sub)
+                    traceback.print_exc()
+                    continue
+        else:
+            print("Caught retweet! The text was: "
+                  +  fulltweet)
 
 def statusFollower():
     while (True):
