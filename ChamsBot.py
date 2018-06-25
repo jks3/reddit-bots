@@ -139,7 +139,7 @@ def statusFollower():
 
 reddit = praw.Reddit(client_id='kFpt0CjxnjgJ7Q',
                      client_secret='MMSxPqAABHzwNnIwk5IlGvElE40',
-                     user_agent='',
+                     user_agent='MaranHaGoanHaRav',
                      username='MaranHaGoanHaRav',
                      password='Jkys1171998!?')
 
