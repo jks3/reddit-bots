@@ -136,10 +136,11 @@ def statusFollower():
             myStream.filter(follow=["178580925"])
         except:
             continue
-reddit = praw.Reddit(client_id='jvTpt-_A6Y_oTA',
-                     client_secret='lMkkD-4s2fPkxE9Kp--VrCEHoMI',
-                     user_agent='Woj bot by u/mkgandkembafan',
-                     username='mkgandkembafan',
+
+reddit = praw.Reddit(client_id='iSPbhUStTaGIKQ',
+                     client_secret='OZFLNRFF2MGxqOsV9shrII55zo0',
+                     user_agent='By u/letsfindcommonground',
+                     username='letsfindcommonground',
                      password='Jkys1171998!?')
 
 auth = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
