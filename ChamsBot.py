@@ -68,7 +68,7 @@ nameToSubreddit = {"Mavericks" : "Mavericks",
 def getEndIndex(tweet, numOfQuotes):
     endIndex = tweet.find(".")
 
-    numOfQuotes += tweet[0:endIndex + 2].count("\"")
+    numOfQuotes += tweet[0:endIndex + 1].count("\"")
     if endIndex == len(tweet) - 1:
         return endIndex
     elif endIndex == -1:
