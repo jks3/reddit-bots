@@ -18,7 +18,7 @@ def getEndIndex(tweet, numOfQuotes):
         return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
     elif not(tweet[endIndex - 2: endIndex].lower().find("jr") == -1):
         return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
-    elif (numOfQuotes%2 == 1):
+    elif (tweet[endIndex + 1:].count("\"") != 0):
         return endIndex + getEndIndex(tweet[endIndex + 1:], numOfQuotes) + 1
     else:
         return endIndex
