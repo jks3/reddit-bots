@@ -68,7 +68,7 @@ nameToSubreddit = {"Mavericks" : "Mavericks",
 def getEndIndex(tweet, numOfQuotes):
     endIndex = tweet.find(".")
 
-    numOfQuotes += tweet[0:endIndex + 1].count("\"")
+    numOfQuotes += tweet[0:endIndex + 2].count("\"")
     if endIndex == len(tweet) - 1:
         return endIndex
     elif endIndex == -1:
@@ -110,13 +110,13 @@ class MyStreamListener(tweepy.StreamListener):
         if fulltweet.lower().find("@ShamsCharania".lower()) == -1 and \
                 fulltweet.find("RT @") == -1 and fulltweet.lower().find("story") == -1 \
                 and fulltweet.lower().find("stories") and len(fulltweet) >= 65:
-            print(status.extended_tweet['full_text'])
+            print(fulltweet)
 
             for sub in subreddit:
                 try:
                     reddit.subreddit("nba").submit(
                 title= "[Charania] "
-                       + status.extended_tweet['full_text']
+                       + fulltweet
                     [0:endIndex + 1],
                 url="https://twitter.com/ShamsCharania/status/"
                                                    + str(status.id))
