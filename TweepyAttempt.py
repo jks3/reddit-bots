@@ -104,8 +104,8 @@ class MyStreamListener(tweepy.StreamListener):
                 except:
                     continue
         else:
-            print("Caught retweet! The text was more than 140 chars and was: "
-                  +  status.extended_tweet['full_text'])
+            print("Caught retweet! The text was: "
+                  +  fulltweet)
 
 myStreamListener = MyStreamListener()
 
