@@ -79,6 +79,8 @@ def getEndIndex(tweet, numOfQuotes):
         return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
     elif (tweet[endIndex + 1:].count("\"") != 0):
         return endIndex + getEndIndex(tweet[endIndex + 1:], numOfQuotes) + 1
+    elif endIndex < 60:
+        return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
     else:
         return endIndex
 
@@ -108,8 +110,7 @@ class MyStreamListener(tweepy.StreamListener):
             if key.lower() in fulltweet.lower():
                 subreddit.append(nameToSubreddit[key])
 
-        if fulltweet.lower().find("@wojespn") == -1 and \
-               fulltweet.find("RT @") == -1 and fulltweet.lower().find("story") == -1 \
+        if fulltweet.lower().find("@") == -1 and fulltweet.lower().find("story") == -1 \
                 and fulltweet.lower().find("stories") and len(fulltweet) >= 65:
             print(fulltweet)
             for sub in subreddit:
