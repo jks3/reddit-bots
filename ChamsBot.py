@@ -101,11 +101,11 @@ class MyStreamListener(tweepy.StreamListener):
         except:
             fulltweet = status.text
 
-        subreddit = ["nba"]
+        subreddit = {"nba"}
 
         for key in nameToSubreddit:
             if key.lower() in fulltweet.lower():
-                subreddit.append(nameToSubreddit[key])
+                subreddit.add(nameToSubreddit[key])
 
         endIndex = getEndIndex(fulltweet, 0)
 
