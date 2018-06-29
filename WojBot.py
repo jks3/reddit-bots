@@ -79,7 +79,7 @@ def getEndIndex(tweet, numOfQuotes):
         return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
     elif (tweet[endIndex + 1:].count("\"") != 0):
         return endIndex + getEndIndex(tweet[endIndex + 1:], numOfQuotes) + 1
-    elif endIndex < 60:
+    elif endIndex < 85:
         return endIndex + getEndIndex(tweet[endIndex + 1:], 0) + 1
     else:
         return endIndex
