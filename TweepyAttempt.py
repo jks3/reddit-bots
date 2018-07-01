@@ -117,10 +117,10 @@ def statusFollower():
     except:
         statusFollower()
 
-reddit = praw.Reddit(client_id='kFpt0CjxnjgJ7Q',
-                     client_secret='MMSxPqAABHzwNnIwk5IlGvElE40',
+reddit = praw.Reddit(client_id='iSPbhUStTaGIKQ',
+                     client_secret='OZFLNRFF2MGxqOsV9shrII55zo0',
                      user_agent='MaranHaGoanHaRav',
-                     username='MaranHaGoanHaRav',
+                     username='letsfindcommonground',
                      password='Jkys1171998!?')
 
 
