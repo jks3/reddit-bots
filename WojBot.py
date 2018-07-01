@@ -102,16 +102,18 @@ class MyStreamListener(tweepy.StreamListener):
         except:
             fulltweet = status.text
 
-        subreddit = {"nba"}
+        subreddit = set()
 
         endIndex = getEndIndex(fulltweet, 0)
 
         for key in nameToSubreddit:
             if key.lower() in fulltweet.lower():
                 subreddit.add(nameToSubreddit[key])
+                subreddit.add("nba")
 
         if fulltweet.lower().find("@") == -1 and fulltweet.lower().find("story") == -1 \
-                and fulltweet.lower().find("stories") and len(fulltweet) >= 65:
+                and fulltweet.lower().find("stories") and len(fulltweet) >= 65 and fulltweet.lower.find("http") == -1 \
+            and fulltweet.lower().find("https") == -1:
             print(fulltweet)
             for sub in subreddit:
                 try:
@@ -137,10 +139,10 @@ def statusFollower():
         except:
             continue
 
-reddit = praw.Reddit(client_id='kFpt0CjxnjgJ7Q',
-                     client_secret='MMSxPqAABHzwNnIwk5IlGvElE40',
+reddit = praw.Reddit(client_id='iSPbhUStTaGIKQ',
+                     client_secret='OZFLNRFF2MGxqOsV9shrII55zo0',
                      user_agent='MaranHaGoanHaRav',
-                     username='MaranHaGoanHaRav',
+                     username='letsfindcommonground',
                      password='Jkys1171998!?')
 
 auth = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
