@@ -23,6 +23,7 @@ nameToSubreddit = {"Mavericks" : "Mavericks",
                    "New Orleans": "NOLAPelicans",
                    "Thunder" : "Thunder",
                    "Oklahoma City": "Thunder",
+                   "OKC": "Thunder",
                    "Suns" : "suns",
                    "Phoenix": "suns",
                    "Trail Blazers" : "ripcity",
@@ -104,7 +105,7 @@ class MyStreamListener(tweepy.StreamListener):
 
         subreddit = set()
 
-        endIndex = getEndIndex(fulltweet, 0)
+        #endIndex = getEndIndex(fulltweet, 0)
 
         for key in nameToSubreddit:
             if key.lower() in fulltweet.lower():
@@ -112,15 +113,14 @@ class MyStreamListener(tweepy.StreamListener):
                 subreddit.add("nba")
 
         if fulltweet.lower().find("@") == -1 and fulltweet.lower().find("story") == -1 \
-                and fulltweet.lower().find("stories") and len(fulltweet) >= 65 and fulltweet.lower.find("http") == -1 \
-            and fulltweet.lower().find("https") == -1:
+                and fulltweet.lower().find("stories") and len(fulltweet) >= 65:
             print(fulltweet)
             for sub in subreddit:
                 try:
                     reddit.subreddit(sub).submit(
                         title= "[Wojnarowski] "
                        + fulltweet
-                    [0:endIndex + 1],
+                    [0:fulltweet.lower().find("htt")],
                 url="https://twitter.com/wojespn/status/"
                                                    + str(status.id))
                 except:
