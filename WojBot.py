@@ -4,6 +4,7 @@ import praw
 import tweepy
 from tweepy import Stream
 
+from termcolor import colored
 
 nameToSubreddit = {"Mavericks" : "Mavericks",
                    "Dallas" : "Mavericks",
@@ -114,7 +115,7 @@ class MyStreamListener(tweepy.StreamListener):
 
         if fulltweet.lower().find("@") == -1 and fulltweet.lower().find("story") == -1 \
                 and fulltweet.lower().find("stories") and len(fulltweet) >= 65:
-            print(fulltweet)
+            print(colored(fulltweet, "green"))
             for sub in subreddit:
                 try:
                     reddit.subreddit(sub).submit(
@@ -124,7 +125,7 @@ class MyStreamListener(tweepy.StreamListener):
                 url="https://twitter.com/wojespn/status/"
                                                    + str(status.id))
                 except:
-                    print(sub)
+                    print(colored(sub, "blue"))
                     traceback.print_exc()
                     continue
         else:
