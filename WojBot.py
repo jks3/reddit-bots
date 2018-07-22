@@ -140,10 +140,10 @@ def statusFollower():
         except:
             continue
 
-reddit = praw.Reddit(client_id='iSPbhUStTaGIKQ',
-                     client_secret='OZFLNRFF2MGxqOsV9shrII55zo0',
+reddit = praw.Reddit(client_id='kFpt0CjxnjgJ7Q',
+                     client_secret='MMSxPqAABHzwNnIwk5IlGvElE40',
                      user_agent='MaranHaGoanHaRav',
-                     username='letsfindcommonground',
+                     username='MaranHaGoanHaRav',
                      password='Jkys1171998!?')
 
 auth = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
