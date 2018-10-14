@@ -140,8 +140,8 @@ def statusFollower():
         except:
             continue
 
-reddit = praw.Reddit(client_id='kFpt0CjxnjgJ7Q',
-                     client_secret='MMSxPqAABHzwNnIwk5IlGvElE40',
+reddit = praw.Reddit(client_id='hguA93nr6Sjn_g',
+                     client_secret='nGWpcWsggjOAYyxk7Nidal-2cQA',
                      user_agent='MaranHaGoanHaRav',
                      username='MaranHaGoanHaRav',
                      password='Jkys1171998!?')
