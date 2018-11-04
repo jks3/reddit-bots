@@ -114,7 +114,7 @@ class MyStreamListener(tweepy.StreamListener):
         #endIndex = getEndIndex(fulltweet, 0)
 
         if fulltweet.lower().find("@") == -1 and fulltweet.lower().find("story") == -1 \
-                and fulltweet.lower().find("stories") and len(fulltweet) >= 65:
+                and fulltweet.lower().find("stories") and len(fulltweet) >= 5:
             print(colored(fulltweet, "green"))
 
             for sub in subreddit:
@@ -124,7 +124,7 @@ class MyStreamListener(tweepy.StreamListener):
                        + fulltweet
                     [0:fulltweet.lower().find("htt")],
                 url="https://twitter.com/ShamsCharania/status/"
-                                                   + str(status.id))
+                                                   + str(status.id), send_replies=False)
                 except:
                     print(colored(sub, "blue"))
                     traceback.print_exc()
@@ -142,10 +142,10 @@ def statusFollower():
         except:
             continue
 
-reddit = praw.Reddit(client_id='hguA93nr6Sjn_g',
-                     client_secret='nGWpcWsggjOAYyxk7Nidal-2cQA',
+reddit = praw.Reddit(client_id='3DLVL7d7SS8_qQ',
+                     client_secret='VAtp6-6RlqNZXItkl9wa-9iExVI',
                      user_agent='MaranHaGoanHaRav',
-                     username='MaranHaGoanHaRav',
+                     username='MKGandKembaFan',
                      password='Jkys1171998!?')
 
 auth = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
