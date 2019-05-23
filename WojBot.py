@@ -113,8 +113,7 @@ class MyStreamListener(tweepy.StreamListener):
                 subreddit.add(nameToSubreddit[key])
                 subreddit.add("nba")
 
-        if fulltweet.lower().find("@") == -1 and fulltweet.lower().find("story") == -1 \
-                and fulltweet.lower().find("stories") and len(fulltweet) >= 65:
+        if (fulltweet.lower().find("rt @") == -1  and fulltweet.lower().find("@wojespn") == -1 and len(fulltweet) >= 5):
             print(colored(fulltweet, "green"))
             for sub in subreddit:
                 try:

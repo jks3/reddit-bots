@@ -113,8 +113,8 @@ class MyStreamListener(tweepy.StreamListener):
 
         #endIndex = getEndIndex(fulltweet, 0)
 
-        if fulltweet.lower().find("@") == -1 and fulltweet.lower().find("story") == -1 \
-                and fulltweet.lower().find("stories") and len(fulltweet) >= 5:
+        if (fulltweet.lower().find("rt @") == -1  and fulltweet.lower().find("@shamscharania") == -1 \
+                and len(fulltweet) >= 5):
             print(colored(fulltweet, "green"))
 
             for sub in subreddit:
