@@ -130,8 +130,8 @@ class MyStreamListener(tweepy.StreamListener):
                     traceback.print_exc()
                     continue
         else:
-            print("Caught retweet! The text was: "
-                  +  fulltweet)
+            print(colored("Caught retweet! The text was: "
+                          + fulltweet, "red"))
 
 
 def statusFollower():
