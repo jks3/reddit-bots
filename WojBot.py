@@ -109,7 +109,7 @@ class MyStreamListener(tweepy.StreamListener):
         #endIndex = getEndIndex(fulltweet, 0)
 
         for key in nameToSubreddit:
-            if key.lower() in fulltweet.lower():
+            if (" " + key.lower() + " ") in fulltweet.lower():
                 subreddit.add(nameToSubreddit[key])
                 subreddit.add("nba")
 

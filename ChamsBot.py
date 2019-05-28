@@ -107,7 +107,7 @@ class MyStreamListener(tweepy.StreamListener):
         subreddit = set()
 
         for key in nameToSubreddit:
-            if key.lower() in fulltweet.lower():
+            if (" " + key.lower() + " ") in fulltweet.lower():
                 subreddit.add(nameToSubreddit[key])
                 subreddit.add("nba")
 
