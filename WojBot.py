@@ -107,7 +107,6 @@ class MyStreamListener(tweepy.StreamListener):
 
 
         if (fulltweet.lower().find("rt @") == -1  and fulltweet.lower().find("@wojespn") == -1 and len(fulltweet) >= 5):
-            print(colored(fulltweet, "green"))
 
             try:
                 reddit.subreddit("nba").submit(
@@ -119,6 +118,8 @@ class MyStreamListener(tweepy.StreamListener):
             except:
                 print(colored("nba", "blue"))
                 traceback.print_exc()
+
+            print(colored(fulltweet, "green"))
 
             subreddit = set()
 
