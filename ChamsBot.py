@@ -104,20 +104,29 @@ class MyStreamListener(tweepy.StreamListener):
         except:
             fulltweet = status.text
 
-        subreddit = set()
-
-        subreddit.add("nba")
-
-        for key in nameToSubreddit:
-            if (" " + key.lower() + " ") in fulltweet.lower():
-                subreddit.add(nameToSubreddit[key])
-
 
         #endIndex = getEndIndex(fulltweet, 0)
 
         if (fulltweet.lower().find("rt @") == -1  and fulltweet.lower().find("@shamscharania") == -1 \
                 and len(fulltweet) >= 5):
             print(colored(fulltweet, "green"))
+
+            try:
+                reddit.subreddit("nba").submit(
+                    title="[Charania] "
+                          + fulltweet
+                          [0:fulltweet.lower().find("htt")],
+                    url="https://twitter.com/ShamsCharania/status/"
+                        + str(status.id), send_replies=False)
+            except:
+                print(colored("nba", "blue"))
+                traceback.print_exc()
+
+            subreddit = set()
+
+            for key in nameToSubreddit:
+                if ((" " + key.lower() + " ") or (key.lower() + "' ") or (" " + key.lower() + "' ")) in fulltweet.lower():
+                    subreddit.add(nameToSubreddit[key])
 
             for sub in subreddit:
                 try:
