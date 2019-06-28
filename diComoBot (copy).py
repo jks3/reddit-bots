@@ -138,10 +138,10 @@ reddit = praw.Reddit(client_id='3DLVL7d7SS8_qQ',
                      username='MKGandKembaFan',
                      password='Jkys1171998!?')
 
-auth = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
-                           "PeuWzllsoiXnQBxAgWLInNUM8BBY2I0eXQZ2yB2pIp59Fjt4Ul")
-auth.set_access_token("615513817-1IxaVyxPfkxZ6jIO9CI89b4FJpSUYxUfw42iUZEH",
-                      "aL5qn9629Q3kvCkWjRlKA6bYXwyTnKxaskTLMwsZvmBlI")
+auth = tweepy.OAuthHandler("EzUsddbekYsLz4benZe5Y8Qjh",
+                           "JGDpkkQMQifdcrm5Ra4Cu0LoLlajDOHKRs2VYb7jq29TNNbSpi")
+auth.set_access_token("615513817-SmZwmbz1YzZcRtI4Czo1j1sU2Cnx94xQcqKuZ8oc",
+                      "GFJWJQ9XO9ssnRti1NQiVa6kWkuRdsYWHSi0CJ4So4S47")
 
 api = tweepy.API(auth)
 
