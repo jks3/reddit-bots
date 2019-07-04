@@ -89,10 +89,10 @@ def getEndIndex(tweet, numOfQuotes):
 
 
 class MyStreamListener(tweepy.StreamListener):
-    auth1 = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
-                               "PeuWzllsoiXnQBxAgWLInNUM8BBY2I0eXQZ2yB2pIp59Fjt4Ul")
-    auth1.set_access_token("615513817-1IxaVyxPfkxZ6jIO9CI89b4FJpSUYxUfw42iUZEH",
-                          "aL5qn9629Q3kvCkWjRlKA6bYXwyTnKxaskTLMwsZvmBlI")
+    auth1 = tweepy.OAuthHandler("33nl5R0LUYyeUmIzyGKBRerET",
+                               "WPF5NJIjPya0E4d3IX57bdo4zAb26Xt1AggsGhT1rvyfI5kbbA")
+    auth1.set_access_token("615513817-VSgvKwpnMSmKEldVIcX4wWwkpsMsq6R41Nwuaaje",
+                          "jbFnTbSMSt6ZYOVgoDd0nRcEd9nQc3k1ARcqMf29gXtQS")
 
     #api1 = tweepy.API(auth1)
     def on_status(self, status, api1=tweepy.API(auth1)):
@@ -160,10 +160,10 @@ reddit = praw.Reddit(client_id='3DLVL7d7SS8_qQ',
                      username='MKGandKembaFan',
                      password='Jkys1171998!?')
 
-auth = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
-                           "PeuWzllsoiXnQBxAgWLInNUM8BBY2I0eXQZ2yB2pIp59Fjt4Ul")
-auth.set_access_token("615513817-1IxaVyxPfkxZ6jIO9CI89b4FJpSUYxUfw42iUZEH",
-                      "aL5qn9629Q3kvCkWjRlKA6bYXwyTnKxaskTLMwsZvmBlI")
+auth = tweepy.OAuthHandler("33nl5R0LUYyeUmIzyGKBRerET",
+                           "WPF5NJIjPya0E4d3IX57bdo4zAb26Xt1AggsGhT1rvyfI5kbbA")
+auth.set_access_token("615513817-VSgvKwpnMSmKEldVIcX4wWwkpsMsq6R41Nwuaaje",
+                      "jbFnTbSMSt6ZYOVgoDd0nRcEd9nQc3k1ARcqMf29gXtQS")
 
 api = tweepy.API(auth)
 
