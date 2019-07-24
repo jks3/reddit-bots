@@ -119,7 +119,7 @@ class MyStreamListener(tweepy.StreamListener):
                     #    + str(status.id), send_replies=False)
             #except:
                 #print(colored("nba", "blue"))
-                #traceback.print_exc()
+               # traceback.print_exc()
 
             print(colored(fulltweet, "green"))
 
