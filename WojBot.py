@@ -108,16 +108,16 @@ class MyStreamListener(tweepy.StreamListener):
 
         if (fulltweet.lower().find("rt @") == -1  and fulltweet.lower().find("@wojespn") == -1 and len(fulltweet) >= 5):
 
-            try:
-                reddit.subreddit("nba").submit(
-                    title="[Wojnarowski] "
-                          + fulltweet
-                          [0:fulltweet.lower().find("htt")],
-                    url="https://twitter.com/wojespn/status/"
-                        + str(status.id), send_replies=False)
-            except:
-                print(colored("nba", "blue"))
-                traceback.print_exc()
+            #try:
+                #reddit.subreddit("nba").submit(
+                 #   title="[Wojnarowski] "
+                  #        + fulltweet
+                   #       [0:fulltweet.lower().find("htt")],
+                   # url="https://twitter.com/wojespn/status/"
+                    #    + str(status.id), send_replies=False)
+            #except:
+             #   print(colored("nba", "blue"))
+              #  traceback.print_exc()
 
             print(colored(fulltweet, "green"))
 
