@@ -71,7 +71,7 @@ reddit = praw.Reddit(client_id='jvTpt-_A6Y_oTA',
                      client_secret='lMkkD-4s2fPkxE9Kp--VrCEHoMI',
                      user_agent='Woj bot by u/mkgandkembafan',
                      username='mkgandkembafan',
-                     password='Jkys1171998!?!')
+                     password='')
 
 auth = tweepy.OAuthHandler("BZ1mLujonEsiQ1nXHsQRL5qQQ",
                            "PeuWzllsoiXnQBxAgWLInNUM8BBY2I0eXQZ2yB2pIp59Fjt4Ul")

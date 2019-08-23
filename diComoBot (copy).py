@@ -136,7 +136,7 @@ reddit = praw.Reddit(client_id='3DLVL7d7SS8_qQ',
                      client_secret='VAtp6-6RlqNZXItkl9wa-9iExVI',
                      user_agent='MaranHaGoanHaRav',
                      username='MKGandKembaFan',
-                     password='Jkys1171998!?')
+                     password='')
 
 auth = tweepy.OAuthHandler("EzUsddbekYsLz4benZe5Y8Qjh",
                            "JGDpkkQMQifdcrm5Ra4Cu0LoLlajDOHKRs2VYb7jq29TNNbSpi")

@@ -121,7 +121,7 @@ reddit = praw.Reddit(client_id='iSPbhUStTaGIKQ',
                      client_secret='OZFLNRFF2MGxqOsV9shrII55zo0',
                      user_agent='MaranHaGoanHaRav',
                      username='letsfindcommonground',
-                     password='Jkys1171998!?')
+                     password='')
 
 
 
