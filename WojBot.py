@@ -153,11 +153,12 @@ def statusFollower():
         except:
             continue
 
-reddit = praw.Reddit(client_id='3DLVL7d7SS8_qQ',
-                     client_secret='VAtp6-6RlqNZXItkl9wa-9iExVI',
+reddit = praw.Reddit(client_id='OcnQUoR3Kamkhw',
+                     client_secret='yEfb-X4NP4VdX-BQiZsD-8-A2jI',
                      user_agent='MaranHaGoanHaRav',
-                     username='MKGandKembaFan',
-                     password='')
+                     refresh_token = "56880923-ftskICk1yOn8wa-5W2iQei-mZrU")
+
+print(reddit.user.me())
 
 auth = tweepy.OAuthHandler("33nl5R0LUYyeUmIzyGKBRerET",
                            "WPF5NJIjPya0E4d3IX57bdo4zAb26Xt1AggsGhT1rvyfI5kbbA")
