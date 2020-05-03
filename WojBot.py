@@ -106,7 +106,8 @@ class MyStreamListener(tweepy.StreamListener):
 
 
 
-        if (fulltweet.lower().find("rt @") == -1  and fulltweet.lower().find("@wojespn") == -1 and len(fulltweet) >= 5):
+        if (fulltweet.lower().find("rt @") == -1  and fulltweet.lower().find("@wojespn") == -1
+                and len(fulltweet) >= 5 and fulltweet.lower().find("http") == -1):
 
             #try:
                 #reddit.subreddit("nba").submit(
@@ -123,6 +124,8 @@ class MyStreamListener(tweepy.StreamListener):
 
             subreddit = set()
 
+            subreddit.add("nba")
+
             # endIndex = getEndIndex(fulltweet, 0)
 
             for key in nameToSubreddit:
@@ -133,8 +136,7 @@ class MyStreamListener(tweepy.StreamListener):
                 try:
                     reddit.subreddit(sub).submit(
                         title= "[Wojnarowski] "
-                       + fulltweet
-                    [0:fulltweet.lower().find("htt")],
+                       + fulltweet,
                 url="https://twitter.com/wojespn/status/"
                                                    + str(status.id), send_replies = False)
                 except:
