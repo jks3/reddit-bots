@@ -106,7 +106,7 @@ class MyStreamListener(tweepy.StreamListener):
 
 
 
-        if (fulltweet.lower().find("rt @") == -1  and fulltweet.lower().find("@wojespn") == -1
+        if ((fulltweet.lower().find("@") == -1  or fulltweet.lower().find("reporting with") >= 0)
                 and len(fulltweet) >= 5 and fulltweet.lower().find("http") == -1):
 
             #try:
