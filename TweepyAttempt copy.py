@@ -23,10 +23,10 @@ def getEndIndex(tweet, numOfQuotes):
     else:
         return endIndex
 
-auth = tweepy.OAuthHandler("RedMTi3TGgGXrdsy4IC20gOX4",
-                           "JV7EcbrXaW35lAOutz46gVhjWMP2o3ZhmySCUNgVY9meTmUKAU")
-auth.set_access_token("615513817-tC4DYQokwF7euREQr5RUV0MFhNFhNak2raFD02os",
-                      "SPeyjpNqThX1TFuxQcAZyJydqgQkYneJQXHfB2sIJs7ne")
+auth = tweepy.OAuthHandler("QQudwo000fzahCOyDXHxSuuy8",
+                           "6fJb3JbMp9MiM2Z9EUX3Fc7vJREqPSWzHzDR2kS2AHi797Frhp")
+auth.set_access_token("615513817-KBbrJar0PY81rSOUCDwVuVLIHYdlJEkL9rmpv8V6",
+                      "bQHcFwaoYastXquuWW294JKRqztaphCkngVm6TcTHDmVP")
 
 api = tweepy.API(auth)
 
@@ -63,14 +63,14 @@ nameToSubreddit = {"Mavericks" : "Mavericks",
                    "Wizards" : "washingtonwizards"}
 
 class MyStreamListener(tweepy.StreamListener):
-    auth1 = tweepy.OAuthHandler("RedMTi3TGgGXrdsy4IC20gOX4",
-                               "JV7EcbrXaW35lAOutz46gVhjWMP2o3ZhmySCUNgVY9meTmUKAU")
-    auth1.set_access_token("615513817-tC4DYQokwF7euREQr5RUV0MFhNFhNak2raFD02os",
-                          "SPeyjpNqThX1TFuxQcAZyJydqgQkYneJQXHfB2sIJs7ne")
+    auth1 = tweepy.OAuthHandler("QQudwo000fzahCOyDXHxSuuy8",
+                               "6fJb3JbMp9MiM2Z9EUX3Fc7vJREqPSWzHzDR2kS2AHi797Frhp")
+    auth1.set_access_token("615513817-KBbrJar0PY81rSOUCDwVuVLIHYdlJEkL9rmpv8V6",
+                          "bQHcFwaoYastXquuWW294JKRqztaphCkngVm6TcTHDmVP")
 
     #api1 = tweepy.API(auth1)
     def on_status(self, status, api1=tweepy.API(auth1)):
-        self.stream = Stream(auth=api1.auth, listener=self, tweet_mode='extended')
+        #self.stream = Stream(auth=api1.auth, listener=self, tweet_mode='extended')
 
         fulltweet = ""
 
